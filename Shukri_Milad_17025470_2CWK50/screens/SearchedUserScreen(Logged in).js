@@ -6,9 +6,16 @@ class SearchUserScreenLoggedIn extends Component{
     constructor(props) {
         super(props);
         this.state = {
-                    given_name: '',
+            given_name: '',
+            searchData:[],
+            user_id: '',
 
-                };
+        };
+
+    }
+
+    static navigationOptions = {
+        header: null
     }
 
     getAccount(){
@@ -26,11 +33,14 @@ class SearchUserScreenLoggedIn extends Component{
                 });
         }
 
-    test(){
-        console.log(given_name)
+
+
+    accountFunc(id, token){
+        this.props.navigation.navigate('UserLoggedIn', {id, token})
     }
 
     componentDidMount(){
+        console.log("Search page");
     }
 
     render(){
@@ -52,34 +62,20 @@ class SearchUserScreenLoggedIn extends Component{
                 <FlatList style = {styles.list}
                     data={this.state.searchData}
                         renderItem={({item}) =>
-                        <View style = {styles.users}>
+                            <TouchableOpacity
+                            onPress={() => this. accountFunc(item.user_id, token)}
+                            >
+                                <View style = {styles.users}>
+                                    <Image
+                                        style={{width: 50, height: 50 }}
+                                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                                    />
 
-                            <Image
-                                style={{width: 50, height: 50 }}
-                                source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
-                            />
-
-                            <Text style = {styles.userText} >
-                                {item.given_name}
-                            </Text>
-
-                                <View style = {styles.buttonSection}>
-
-
-                                    <TouchableOpacity style = {styles.followButtons}>
-                                        <Text>Follow</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style = {styles.followButtons}>
-                                        <Text>Followers</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style = {styles.followButtons}>
-                                        <Text>Following</Text>
-                                    </TouchableOpacity>
-
+                                    <Text style = {styles.userText} >
+                                        {item.given_name}
+                                    </Text>
                                 </View>
-                        </View>
+                            </TouchableOpacity>
                         }
                     keyExtractor={({id}, index) => id}
                 />
@@ -112,17 +108,18 @@ const styles = StyleSheet.create({
   },
 
   userText: {
-      fontSize:15,
+       fontSize:15,
+       paddingLeft:20,
   },
 
   buttonSection: {
-    justifyContent: 'space-around',
-    flexDirection: "row",
+       justifyContent: 'space-around',
+       flexDirection: "row",
   },
 
   users: {
        alignItems:"center",
-       justifyContent: 'space-between',
+
        flexDirection: "row",
        backgroundColor: '#e6ccff',
        padding: 10,
@@ -149,13 +146,13 @@ const styles = StyleSheet.create({
   },
 
   searchButton: {
-        alignItems:'center',
-        alignSelf: 'flex-end',
-        backgroundColor: '#af7aff',
-        padding: 10,
-        borderRadius: 10,
-        width: 100,
-        right: 25,
+      alignItems:'center',
+      alignSelf: 'flex-end',
+      backgroundColor: '#af7aff',
+      padding: 10,
+      borderRadius: 10,
+      width: 100,
+      right: 25,
   },
 
 })

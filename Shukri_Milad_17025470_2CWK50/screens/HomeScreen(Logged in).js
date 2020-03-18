@@ -47,7 +47,7 @@ class HomeScreenLoggedIn extends Component{
                  isLoading: false,
                  chittsData: responseJson,
             });
-           // console.log("logged in with: ", token, id);
+           //console.log("logged in with: ", token, id);
         })
         .catch((error) =>{
             console.log(error);
@@ -56,17 +56,22 @@ class HomeScreenLoggedIn extends Component{
     }
 
     postFunc(token){
-        this.props.navigation.navigate('PostScreen', {token})
+        this.props.navigation.navigate('PostScreen', {id, token})
+    }
+
+    accountFunc(id, token){
+        this.props.navigation.navigate('MyAccount', {id, token})
     }
 
     componentDidMount(){
          this.getData();
+         console.log(id, token)
     }
-/*
+
     componentDidUpdate(){
          this.getData();
     }
-*/
+
     render(){
         return(
             <View style={styles.container}>
@@ -83,7 +88,7 @@ class HomeScreenLoggedIn extends Component{
 
                 <TouchableOpacity
                     style={styles.myAccountButton}
-                    onPress={() => this.props.navigation.navigate('MyAccount')}
+                    onPress={() => this.accountFunc(id, token)}
                 >
                     <Text> My Account </Text>
                 </TouchableOpacity>

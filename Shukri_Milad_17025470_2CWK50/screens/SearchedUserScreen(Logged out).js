@@ -8,12 +8,17 @@ class SearchUserScreenLoggedOut extends Component{
         this.state = {
             given_name: '',
             searchData:[],
+            user_id: '',
 
         };
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
     getAccount(){
-    console.log('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name);
+            console.log('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name);
             return fetch('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -27,16 +32,12 @@ class SearchUserScreenLoggedOut extends Component{
             });
     }
 
+    accountFunc(id){
+        this.props.navigation.navigate('UserAccount', {id})
+    }
+
     componentDidMount(){
 
-    }
-
-    mybuttonclick() {
-        Alert.alert("test")
-    }
-
-    test(){
-        console.log(this.state.given_name);
     }
 
     render(){
@@ -58,29 +59,20 @@ class SearchUserScreenLoggedOut extends Component{
                 <FlatList style = {styles.list}
                     data={this.state.searchData}
                         renderItem={({item}) =>
-                        <View style = {styles.users}>
+                            <TouchableOpacity
+                            onPress={() => this. accountFunc(item.user_id)}
+                            >
+                                <View style = {styles.users}>
+                                    <Image
+                                        style={{width: 50, height: 50 }}
+                                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                                    />
 
-                            <Image
-                                style={{width: 50, height: 50 }}
-                                source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
-                            />
-
-                            <Text style = {styles.userText} >
-                                {item.given_name}
-                            </Text>
-
-                                <View style = {styles.buttonSection}>
-
-                                    <TouchableOpacity style = {styles.followButtons}>
-                                        <Text>Followers</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style = {styles.followButtons}>
-                                        <Text>Following</Text>
-                                    </TouchableOpacity>
-
+                                    <Text style = {styles.userText} >
+                                        {item.given_name}
+                                    </Text>
                                 </View>
-                        </View>
+                            </TouchableOpacity>
                         }
                     keyExtractor={({id}, index) => id}
                 />
@@ -104,7 +96,7 @@ const styles = StyleSheet.create({
 
   userText: {
       fontSize:15,
-
+      paddingLeft:20,
   },
 
   followButtons: {
@@ -124,7 +116,6 @@ const styles = StyleSheet.create({
 
   users: {
        alignItems:"center",
-       justifyContent: 'space-between',
        flexDirection: "row",
        backgroundColor: '#e6ccff',
        padding: 10,

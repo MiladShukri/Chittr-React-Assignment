@@ -12,6 +12,9 @@ class LogIn extends Component{
         };
     }
 
+    static navigationOptions = {
+        header: null
+    }
 
 
     logIn(){

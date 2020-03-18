@@ -5,7 +5,6 @@ class HomeScreenLoggedOut extends Component{
 
     constructor(props) {
             super(props);
-            this.state = {SearchText: ''};
             this.state ={
                 isLoading: true,
                 chittsData:[]
@@ -33,11 +32,11 @@ class HomeScreenLoggedOut extends Component{
     componentDidMount(){
              this.getData();
     }
-/*
-    componentDidUpdate(){
-             this.getData();
-    }
-*/
+
+//    componentDidUpdate(){
+//             this.getData();
+//    }
+
 
     render(){
             return(

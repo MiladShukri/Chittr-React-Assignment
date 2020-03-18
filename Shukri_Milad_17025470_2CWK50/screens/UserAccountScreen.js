@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { TextInput, Button, Text, View, Image, Alert, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
 
-class MyAccount extends Component{
+class UserAccount extends Component{
 
     constructor(props) {
         super(props);
         this.state ={
             isLoading: true,
-            myaccountData:[]
+            accountData:[]
         }
 
         const {state} = props.navigation;
@@ -19,13 +19,13 @@ class MyAccount extends Component{
         header: null
     }
 
-    getInfo(){
+    getAccountInfo(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                      isLoading: false,
-                     myaccountData: responseJson,
+                     accountData: responseJson,
                 });
 
             })
@@ -33,18 +33,6 @@ class MyAccount extends Component{
                 console.log(error);
 
             });
-    }
-
-    updateInfoFunc(id, token){
-            this.props.navigation.navigate('InformationScreen', {id, token})
-    }
-
-    componentDidMount(){
-             this.getInfo();
-    }
-
-    componentDidUpdate(){
-             this.getInfo();
     }
 
     followingFunc(id){
@@ -55,6 +43,14 @@ class MyAccount extends Component{
             this.props.navigation.navigate('FollowersScreen', {id})
     }
 
+    componentDidMount(){
+             this.getAccountInfo();
+             console
+    }
+
+    componentDidUpdate(){
+             this.getAccountInfo();
+    }
 
     render(){
         return(
@@ -64,22 +60,9 @@ class MyAccount extends Component{
                     source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
                 />
 
-                <TouchableOpacity
-                    style={styles.updatePictureButton}
-                >
-                    <Text> Update Profile Picture </Text>
-                </TouchableOpacity>
-
-                <Text style = {styles.details}> Given Name: {this.state.myaccountData.given_name} </Text>
-                <Text style = {styles.details}> Family Name: {this.state.myaccountData.family_name} </Text>
-                <Text style = {styles.details}> Email: {this.state.myaccountData.email} </Text>
-
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => this.updateInfoFunc(id, token)}
-                >
-                    <Text> Update Account Information </Text>
-                </TouchableOpacity>
+                <Text style = {styles.details}> Given Name: {this.state.accountData.given_name} </Text>
+                <Text style = {styles.details}> Family Name: {this.state.accountData.family_name} </Text>
+                <Text style = {styles.details}> Email: {this.state.accountData.email} </Text>
 
                 <View style={styles.followButtonsContainer}>
                     <TouchableOpacity
@@ -102,7 +85,7 @@ class MyAccount extends Component{
     }
 }
 
-export default MyAccount;
+export default UserAccount;
 
 const styles = StyleSheet.create({
 

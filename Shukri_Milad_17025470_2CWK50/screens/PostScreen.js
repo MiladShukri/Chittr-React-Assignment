@@ -7,21 +7,21 @@ class PostScreen extends Component{
     constructor(props) {
         super(props);
         this.state ={
-            chit_id: 0,
-            timestamp: 0,
+            chit_id: [],
+            timestamp: [],
             chit_content:'',
-            user_id: 0,
-            given_name:'',
-            family_name:'',
-            email:'',
-            chittsData:[]
         }
 
         const {state} = props.navigation;
+        id = state.params.id;
         token = state.params.token;
     }
 
-    postChit(token){
+    static navigationOptions = {
+        header: null
+    }
+
+    postChit(token, id){
             return fetch("http://10.0.2.2:3333/api/v0.0.5/chits",
             {
                 method: 'POST',
@@ -31,24 +31,30 @@ class PostScreen extends Component{
                     'X-Authorization': token
                 },
                 body: JSON.stringify({
-                    chit_id: this.state.chit_id,
-                    timestamp: this.state.timestamp,
                     chit_content: this.state.chit_content,
-                    user_id: this.state.user_id,
-                    given_name: this.state.given_name,
-                    family_name: this.state.family_name,
-                    email: this.state.email,
+                    // grabs todays date and uses it to timestamp
+                    timestamp: Date.now()
                 })
             })
-            .then((response) => {
-                this.props.navigation.navigate('HomeLoggedIn');
-                console.log(this.state.chit_content);
-                console.log("post screen token: ", token);
-            })
+            .then((response) => response.json())
+                    .then((responseJson) => {
+                        this.setState({
+                             chit_id: responseJson,
+                        });
+                        console.log(responseJson);
+                        this.props.navigation.navigate('HomeLoggedIn', id)
+                    })
             .catch((error) => {
                 console.error(error);
             });
+        }
+
+    componentDidMount(){
+        console.log("post screen token: ", token);
+        console.log("post screen id: ", id);
     }
+
+
 
     render(){
         return(

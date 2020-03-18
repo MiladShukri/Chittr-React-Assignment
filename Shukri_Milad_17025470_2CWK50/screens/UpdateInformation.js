@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { TextInput, Button, Text, View, Alert, TouchableOpacity, StyleSheet, Header } from 'react-native';
+import { TextInput, Button, Text, View, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 
-class SignUp extends Component{
+class InfoScreen extends Component{
 
     constructor(props) {
         super(props);
@@ -9,20 +9,25 @@ class SignUp extends Component{
             given_name:'',
             family_name:'',
             email:'',
-            password:''
+            password:'',
         };
+
+        const {state} = props.navigation;
+        id = state.params.id;
+        token = state.params.token;
     }
 
     static navigationOptions = {
         header: null
     }
 
-    addAccount(){
-        return fetch("http://10.0.2.2:3333/api/v0.0.5/user",
+    updateAccount(){
+        return fetch("http://10.0.2.2:3333/api/v0.0.5/user/" + id,
         {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type':'application/json',
+                'X-Authorization': token
             },
             body: JSON.stringify({
                 given_name: this.state.given_name,
@@ -32,19 +37,22 @@ class SignUp extends Component{
             })
         })
         .then((response) => {
-            Alert.alert("Account Made!", "You will be redirected to the log in screen");
-            this.props.navigation.navigate('LogIn');
+            Alert.alert("Account Updated");
+            this.props.navigation.navigate('MyAccount');
         })
         .catch((error) => {
             //console.error(error);
-            Alert.alert("Incorrect details", "Please re-enter your sign up details");
+            Alert.alert("Incorrect details", "Please re-enter your updated details");
         });
+    }
+
+    componentDidMount(){
+             console.log(token, id);
     }
 
     render(){
         return(
             <View style={styles.container}>
-
                 <TextInput
                     style={{height: 40}}
                     placeholder="Given Name:"
@@ -68,7 +76,6 @@ class SignUp extends Component{
 
                 <TextInput
                     style={{height: 40}}
-                    secureTextEntry={true}
                     placeholder="Password:"
                     onChangeText={(password) => this.setState({password})}
                     value={this.state.password}
@@ -76,16 +83,16 @@ class SignUp extends Component{
 
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => this.addAccount()}
+                    onPress={() => this.updateAccount()}
                 >
-                    <Text> Sign up </Text>
+                    <Text> Update </Text>
                 </TouchableOpacity>
             </View>
         );
     }
 }
 
-export default SignUp;
+export default InfoScreen;
 
 const styles = StyleSheet.create({
 

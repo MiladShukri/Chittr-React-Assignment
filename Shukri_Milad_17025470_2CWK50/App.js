@@ -5,9 +5,14 @@ import HomeScreenLoggedIn from './screens/HomeScreen(Logged in)';
 import SignUpScreen from './screens/SignUpScreen';
 import LogInScreen from './screens/LogInScreen';
 import MyAccountScreen from './screens/MyAccountScreen';
+import UserAccountScreen from './screens/UserAccountScreen';
+import UserAccountLoggedIn from './screens/UserAccountloggedIn';
 import SearchedUserScreenLoggedOut from './screens/SearchedUserScreen(Logged out)';
 import SearchedUserScreenLoggedIn from './screens/SearchedUserScreen(Logged in)';
 import PostScreen from './screens/PostScreen';
+import InfoScreen from './screens/UpdateInformation';
+import FollowingScreen from './screens/Following';
+import FollowersScreen from './screens/Followers';
 
 
 const AppStackNav = createStackNavigator({
@@ -35,7 +40,22 @@ const AppStackNav = createStackNavigator({
     },
     PostScreen: {
         screen: PostScreen
-    }
+    },
+    InformationScreen: {
+        screen: InfoScreen
+    },
+    FollowingScreen: {
+        screen: FollowingScreen
+    },
+    FollowersScreen: {
+        screen: FollowersScreen
+    },
+    UserAccount: {
+        screen: UserAccountScreen
+    },
+    UserLoggedIn: {
+        screen: UserAccountLoggedIn
+    },
 });
 
 
