@@ -1,5 +1,6 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { RNCamera } from 'react-native-camera';
 import HomeScreenLoggedOut from './screens/HomeScreen(Logged out)';
 import HomeScreenLoggedIn from './screens/HomeScreen(Logged in)';
 import SignUpScreen from './screens/SignUpScreen';
@@ -13,7 +14,8 @@ import PostScreen from './screens/PostScreen';
 import InfoScreen from './screens/UpdateInformation';
 import FollowingScreen from './screens/Following';
 import FollowersScreen from './screens/Followers';
-
+import CameraScreen from './screens/CameraScreen';
+import PostCameraScreen from './screens/PostCameraScreen';
 
 const AppStackNav = createStackNavigator({
 
@@ -55,6 +57,12 @@ const AppStackNav = createStackNavigator({
     },
     UserLoggedIn: {
         screen: UserAccountLoggedIn
+    },
+    CameraScreen: {
+        screen: CameraScreen
+    },
+    PostCameraScreen: {
+        screen: PostCameraScreen
     },
 });
 

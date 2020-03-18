@@ -34,6 +34,8 @@ target 'Shukri_Milad_17025470_2CWK50' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'Shukri_Milad_17025470_2CWK50Tests' do
     inherit! :search_paths
     # Pods for testing

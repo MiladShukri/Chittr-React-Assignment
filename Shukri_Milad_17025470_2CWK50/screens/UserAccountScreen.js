@@ -48,16 +48,16 @@ class UserAccount extends Component{
              console
     }
 
-    componentDidUpdate(){
-             this.getAccountInfo();
-    }
+//    componentDidUpdate(){
+//             this.getAccountInfo();
+//    }
 
     render(){
         return(
             <View style={styles.container}>
                 <Image
                     style={{width: 160, height: 160 }}
-                    source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                    source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/user/' + id +'/photo?timestamp=' + Date.now()}}
                 />
 
                 <Text style = {styles.details}> Given Name: {this.state.accountData.given_name} </Text>

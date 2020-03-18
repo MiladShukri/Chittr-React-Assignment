@@ -7,7 +7,7 @@ class MyAccount extends Component{
         super(props);
         this.state ={
             isLoading: true,
-            myaccountData:[]
+            myaccountData:[],
         }
 
         const {state} = props.navigation;
@@ -35,17 +35,24 @@ class MyAccount extends Component{
             });
     }
 
+
+
+    updateCameraFunc(id, token){
+            this.props.navigation.navigate('CameraScreen', {id, token})
+    }
+
     updateInfoFunc(id, token){
             this.props.navigation.navigate('InformationScreen', {id, token})
     }
 
     componentDidMount(){
              this.getInfo();
+             console.log(id, token);
     }
 
-    componentDidUpdate(){
-             this.getInfo();
-    }
+//    componentDidUpdate(){
+//             this.getInfo();
+//    }
 
     followingFunc(id){
             this.props.navigation.navigate('FollowingScreen', {id})
@@ -61,11 +68,12 @@ class MyAccount extends Component{
             <View style={styles.container}>
                 <Image
                     style={{width: 160, height: 160 }}
-                    source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                    source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/user/' + id +'/photo?timestamp=' + Date.now()}}
                 />
 
                 <TouchableOpacity
                     style={styles.updatePictureButton}
+                    onPress={() => this.updateCameraFunc(id, token)}
                 >
                     <Text> Update Profile Picture </Text>
                 </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, TextInput, FlatList, Button, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { ActivityIndicator, TextInput, FlatList, Button, StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 class HomeScreenLoggedOut extends Component{
 
@@ -68,15 +68,22 @@ class HomeScreenLoggedOut extends Component{
                     <FlatList style={styles.list}
                         data={this.state.chittsData}
                         renderItem={({item}) =>
-                            <Text style={styles.chits}>
+                            <View  style={styles.chits}>
+                            <Text>
 
                             <Text style={{fontWeight: "bold"}}> {item.user.given_name}: </Text>
 
                             {item.chit_content}
 
-                            </Text>}
-                        keyExtractor={({id}, index) => id}
-                    />
+                            </Text>
+                                <Image
+                                        style={{width: 50, height: 50, marginTop: 10}}
+                                        source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/chits/' + item.chit_id +'/photo'}}
+                                />
+                            </View>
+                            }
+                    keyExtractor={({id}, index) => id}
+                />
                 </View>
             )
     }

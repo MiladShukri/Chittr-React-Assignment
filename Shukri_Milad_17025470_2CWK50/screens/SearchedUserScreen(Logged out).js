@@ -65,7 +65,7 @@ class SearchUserScreenLoggedOut extends Component{
                                 <View style = {styles.users}>
                                     <Image
                                         style={{width: 50, height: 50 }}
-                                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                                        source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/user/' + item.user_id +'/photo?timestamp=' + Date.now()}}
                                     />
 
                                     <Text style = {styles.userText} >

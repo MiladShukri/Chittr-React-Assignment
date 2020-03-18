@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, Button, Text, View, FlatList, Alert, TouchableOpacity, StyleSheet} from 'react-native';
+import { TextInput, Button, Text, View, FlatList, Alert, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 class HomeScreenLoggedIn extends Component{
 
@@ -110,10 +110,17 @@ class HomeScreenLoggedIn extends Component{
                 <FlatList style={styles.list}
                     data={this.state.chittsData}
                         renderItem={({item}) =>
-                            <Text style={styles.chits}>
-                                <Text style={{fontWeight: "bold"}}> {item.user.given_name}: </Text>
-                                    {item.chit_content}
-                            </Text>}
+                            <View style={styles.chits}>
+                                <Text>
+                                    <Text style={{fontWeight: "bold"}}> {item.user.given_name}: </Text>
+                                        {item.chit_content}
+                                </Text>
+                                <Image
+                                        style={{width: 50, height: 50, marginTop: 10}}
+                                        source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/chits/' + item.chit_id +'/photo'}}
+                                />
+                            </View>
+                            }
                     keyExtractor={({id}, index) => id}
                 />
             </View>
@@ -177,6 +184,7 @@ const styles = StyleSheet.create({
   },
 
   chits: {
+
         backgroundColor: '#e6ccff',
         padding: 20,
         marginVertical: 8,

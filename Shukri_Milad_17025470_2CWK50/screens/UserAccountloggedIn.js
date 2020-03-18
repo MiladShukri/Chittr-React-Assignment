@@ -87,9 +87,9 @@ class UserLoggedIn extends Component{
              this.getAccountInfo();
     }
 
-    componentDidUpdate(){
-             this.getAccountInfo();
-    }
+//    componentDidUpdate(){
+//             this.getAccountInfo();
+//    }
 
     render(){
         return(
@@ -99,7 +99,7 @@ class UserLoggedIn extends Component{
 
                     <Image
                         style={{width: 160, height: 160 }}
-                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                        source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/user/' + id +'/photo?timestamp=' + Date.now()}}
                     />
 
                     <View style={styles.followUnfollowButtons}>
