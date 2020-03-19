@@ -33,9 +33,9 @@ class HomeScreenLoggedOut extends Component{
              this.getData();
     }
 
-//    componentDidUpdate(){
-//             this.getData();
-//    }
+    componentDidUpdate(){
+             this.getData();
+    }
 
 
     render(){

@@ -57,6 +57,7 @@ class HomeScreenLoggedIn extends Component{
 
     postFunc(token){
         this.props.navigation.navigate('PostScreen', {id, token})
+        global.photoData=('');
     }
 
     accountFunc(id, token){

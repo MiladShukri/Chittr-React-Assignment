@@ -21,6 +21,7 @@ class PostScreen extends Component{
         header: null
     }
 
+
     postChit(token, id){
         if(global.photoData == "null" || global.photoData == "undefined")
         {

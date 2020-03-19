@@ -59,6 +59,7 @@ class PostCameraScreen extends Component{
             console.log(data.uri);
             global.photoData=(data);
             this.props.navigation.navigate('PostScreen');
+            Alert.alert("Photo Taken!");
 
         }
      };
