@@ -14,9 +14,13 @@ npm install
 
 To run the application on the android virtual device type npx react-native run-android in the application directory, make sure to also have the chittr server running by typing npm start in the server directory.
 
+### To run the application
+
 ```
 npx react-native run-android
 ```
+
+### To run the server
 
 ```
 npm start
