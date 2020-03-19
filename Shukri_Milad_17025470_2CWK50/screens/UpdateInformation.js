@@ -40,7 +40,7 @@ class InfoScreen extends Component{
         })
         .then((response) => {
             Alert.alert("Account Updated");
-            this.props.navigation.navigate('MyAccount');
+            this.props.navigation.navigate('HomeLoggedIn');
         })
         .catch((error) => {
             //console.error(error);
