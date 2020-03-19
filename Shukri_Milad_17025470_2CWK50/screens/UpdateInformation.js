@@ -17,10 +17,12 @@ class InfoScreen extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // patch request to update the user info
     updateAccount(){
         return fetch("http://10.0.2.2:3333/api/v0.0.5/user/" + id,
         {
@@ -94,6 +96,8 @@ class InfoScreen extends Component{
 
 export default InfoScreen;
 
+
+// All the styling for the update information page page is done here.
 const styles = StyleSheet.create({
 
   container: {

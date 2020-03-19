@@ -7,20 +7,24 @@ class HomeScreenLoggedOut extends Component{
             super(props);
             this.state ={
                 isLoading: true,
+                // variable for all the data we get from the chits
                 chittsData:[]
             }
-        }
+    }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // get request function for the chits
     getData(){
         return fetch('http://10.0.2.2:3333/api/v0.0.5/chits')
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
                  isLoading: false,
+                 // sets the variable to the json response
                  chittsData: responseJson,
             });
         })
@@ -29,10 +33,12 @@ class HomeScreenLoggedOut extends Component{
         });
     }
 
+    // calls the get request when on the page
     componentDidMount(){
              this.getData();
     }
 
+    // calls the request every second to keep the chits updating
     componentDidUpdate(){
              this.getData();
     }
@@ -43,27 +49,27 @@ class HomeScreenLoggedOut extends Component{
                 <View style= {styles.container}>
                     <Text style= {styles.title}>
                         Chittr
-                    </Text>
+                    </Text>{/*Shows the title chittr*/}
                     <TouchableOpacity
                         style={styles.logInButton}
                         onPress={() => this.props.navigation.navigate('LogIn')}
                     >
                         <Text> Log In </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>{/*Button that navigates to the log in page*/}
 
                     <TouchableOpacity
                         style={styles.signUpButton}
                         onPress={() => this.props.navigation.navigate('SignUp')}
                     >
                         <Text> Sign up </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>{/*Button that navigates to the sign in page*/}
 
                     <TouchableOpacity
                         style={styles.searchButton}
                         onPress={() => this.props.navigation.navigate('SearchLoggedOut')}
                     >
                         <Text> Search </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>{/*Button that navigates to the search page*/}
 
                     <FlatList style={styles.list}
                         data={this.state.chittsData}
@@ -79,7 +85,7 @@ class HomeScreenLoggedOut extends Component{
                                 <Image
                                         style={{width: 50, height: 50, marginTop: 10}}
                                         source={{uri: 'http://10.0.2.2:3333/api/v0.0.5/chits/' + item.chit_id +'/photo'}}
-                                />
+                                />{/*Use the uri to get the chitt images of the posts from the api*/}
                             </View>
                             }
                     keyExtractor={({id}, index) => id}
@@ -91,6 +97,7 @@ class HomeScreenLoggedOut extends Component{
 
 export default HomeScreenLoggedOut;
 
+// All the styling for the home logged out page is done here.
 const styles = StyleSheet.create({
 
   list: {

@@ -15,10 +15,12 @@ class UserAccount extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // this function uses a get request to get the users account information
     getAccountInfo(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id)
             .then((response) => response.json())
@@ -35,10 +37,12 @@ class UserAccount extends Component{
             });
     }
 
+    // this function navigates to the following screen and sends the id
     followingFunc(id){
             this.props.navigation.navigate('FollowingScreen', {id})
     }
 
+    // this function navigates to the followers screen and sends the id
     followersFunc(id){
             this.props.navigation.navigate('FollowersScreen', {id})
     }
@@ -47,10 +51,6 @@ class UserAccount extends Component{
              this.getAccountInfo();
              console
     }
-
-//    componentDidUpdate(){
-//             this.getAccountInfo();
-//    }
 
     render(){
         return(
@@ -87,6 +87,7 @@ class UserAccount extends Component{
 
 export default UserAccount;
 
+// All the styling for the user account page is done here.
 const styles = StyleSheet.create({
 
   container: {

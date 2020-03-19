@@ -14,10 +14,12 @@ class SearchUserScreenLoggedIn extends Component{
 
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // get request to get account information
     getAccount(){
         console.log('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name);
                 return fetch('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name)
@@ -34,14 +36,11 @@ class SearchUserScreenLoggedIn extends Component{
         }
 
 
-
+    //this function navigates to the user account page and sends the id and token
     accountFunc(id, token){
         this.props.navigation.navigate('UserLoggedIn', {id, token})
     }
 
-    componentDidMount(){
-        console.log("Search page");
-    }
 
     render(){
         return(
@@ -86,6 +85,7 @@ class SearchUserScreenLoggedIn extends Component{
 
 export default SearchUserScreenLoggedIn;
 
+// All the styling for the search page is done here.
 const styles = StyleSheet.create({
 
   list: {

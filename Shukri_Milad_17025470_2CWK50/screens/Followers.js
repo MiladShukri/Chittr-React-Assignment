@@ -13,11 +13,12 @@ class FollowersScreen extends Component{
         id = state.params.id;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
-
+    // get request to grab the followers from the api
     getFollowers(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/followers')
             .then((response) => response.json())
@@ -58,6 +59,7 @@ class FollowersScreen extends Component{
 
 export default FollowersScreen;
 
+// All the styling for the followers screen is done here.
 const styles = StyleSheet.create({
 
   container: {

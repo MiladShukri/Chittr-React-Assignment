@@ -16,6 +16,7 @@ class CameraScreen extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
@@ -24,6 +25,7 @@ class CameraScreen extends Component{
              console.log(id, token);
     }
 
+    // post request to update the photo for your account
     updatePhoto(data){
         return fetch("http://10.0.2.2:3333/api/v0.0.5/user/photo",
         {
@@ -67,7 +69,7 @@ class CameraScreen extends Component{
         );
 
     }
-
+    //when the picture is taken calls the update photo function
      takePicture = async() => {
         if (this.camera) {
             const options = { quality: 0.5, base64: true };
@@ -80,6 +82,7 @@ class CameraScreen extends Component{
 
 export default CameraScreen;
 
+// All the styling for the camera screen is done here.
 const styles = StyleSheet.create({
 
  container: {

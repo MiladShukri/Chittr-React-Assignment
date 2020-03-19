@@ -13,10 +13,12 @@ class SearchUserScreenLoggedOut extends Component{
         };
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // get request to get account information
     getAccount(){
             console.log('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name);
             return fetch('http://10.0.2.2:3333/api/v0.0.5/search_user?q=' + this.state.given_name)
@@ -32,12 +34,9 @@ class SearchUserScreenLoggedOut extends Component{
             });
     }
 
+    //this function navigates to the user account page and sends the id
     accountFunc(id){
         this.props.navigation.navigate('UserAccount', {id})
-    }
-
-    componentDidMount(){
-
     }
 
     render(){
@@ -83,6 +82,7 @@ class SearchUserScreenLoggedOut extends Component{
 
 export default SearchUserScreenLoggedOut;
 
+// All the styling for the search page is done here.
 const styles = StyleSheet.create({
 
   list: {

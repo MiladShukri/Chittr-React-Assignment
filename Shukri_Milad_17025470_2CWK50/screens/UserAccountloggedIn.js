@@ -15,10 +15,12 @@ class UserLoggedIn extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // this function uses a get request to get the users account information
     getAccountInfo(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id)
             .then((response) => response.json())
@@ -35,6 +37,7 @@ class UserLoggedIn extends Component{
             });
     }
 
+    // this function uses a post request to follow a user
     follow(){
             return fetch("http://10.0.2.2:3333/api/v0.0.5/user/" + id + "/follow",
             {
@@ -55,6 +58,7 @@ class UserLoggedIn extends Component{
             });
     }
 
+    // this function uses a delete request to unfollow a user
     unfollow(){
             return fetch("http://10.0.2.2:3333/api/v0.0.5/user/" + id + "/follow",
             {
@@ -75,10 +79,12 @@ class UserLoggedIn extends Component{
             });
     }
 
+    // this function navigates to the following screen and sends the id
     followingFunc(id){
             this.props.navigation.navigate('FollowingScreen', {id})
     }
 
+    // this function navigates to the followers screen and sends the id
     followersFunc(id){
             this.props.navigation.navigate('FollowersScreen', {id})
     }
@@ -87,9 +93,7 @@ class UserLoggedIn extends Component{
              this.getAccountInfo();
     }
 
-//    componentDidUpdate(){
-//             this.getAccountInfo();
-//    }
+
 
     render(){
         return(
@@ -147,6 +151,7 @@ class UserLoggedIn extends Component{
 
 export default UserLoggedIn;
 
+// All the styling for the user account page is done here.
 const styles = StyleSheet.create({
 
   container: {

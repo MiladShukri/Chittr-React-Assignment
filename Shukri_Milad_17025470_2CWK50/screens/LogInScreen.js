@@ -12,11 +12,12 @@ class LogIn extends Component{
         };
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
-
+    // Log in post request for the user to get into their account
     logIn(){
             return fetch("http://10.0.2.2:3333/api/v0.0.5/login",
             {
@@ -78,6 +79,8 @@ class LogIn extends Component{
 }
 
 export default LogIn;
+
+// All the styling for the log in screen is done here.
 
 const styles = StyleSheet.create({
 

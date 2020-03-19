@@ -18,6 +18,7 @@ class PostCameraScreen extends Component{
         global.photoData
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
@@ -52,6 +53,7 @@ class PostCameraScreen extends Component{
 
     }
 
+     //when the picture is taken grabs the photodate and navigates to the post screen.
      takePicture = async() => {
         if (this.camera) {
             const options = { quality: 0.5, base64: true };
@@ -67,6 +69,7 @@ class PostCameraScreen extends Component{
 
 export default PostCameraScreen;
 
+// All the styling for the post camera screen page is done here.
 const styles = StyleSheet.create({
 
  container: {

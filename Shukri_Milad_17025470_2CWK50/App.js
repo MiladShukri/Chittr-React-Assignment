@@ -16,6 +16,7 @@ import FollowingScreen from './screens/Following';
 import FollowersScreen from './screens/Followers';
 import CameraScreen from './screens/CameraScreen';
 import PostCameraScreen from './screens/PostCameraScreen';
+// Import the stack navigation, camera and all the screens of my application
 
 const AppStackNav = createStackNavigator({
 
@@ -64,6 +65,7 @@ const AppStackNav = createStackNavigator({
     PostCameraScreen: {
         screen: PostCameraScreen
     },
+    // Here i have set every screen into the stack navigator so i can navigate around my application.
 });
 
 

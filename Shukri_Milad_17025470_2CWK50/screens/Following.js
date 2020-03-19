@@ -13,10 +13,12 @@ class FollowingScreen extends Component{
         id = state.params.id;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // get request to grab who the user is following from the api
     getFollowing(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id + '/following')
             .then((response) => response.json())
@@ -56,6 +58,7 @@ class FollowingScreen extends Component{
 
 export default FollowingScreen;
 
+// All the styling for the following screen is done here.
 const styles = StyleSheet.create({
 
   container: {

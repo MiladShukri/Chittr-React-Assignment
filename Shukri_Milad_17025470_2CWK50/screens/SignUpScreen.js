@@ -13,10 +13,12 @@ class SignUp extends Component{
         };
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // post reqeust to add an account to the api.
     addAccount(){
         return fetch("http://10.0.2.2:3333/api/v0.0.5/user",
         {
@@ -87,6 +89,8 @@ class SignUp extends Component{
 
 export default SignUp;
 
+
+// All the styling for the sign up page is done here.
 const styles = StyleSheet.create({
 
   container: {

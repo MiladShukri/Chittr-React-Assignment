@@ -17,11 +17,12 @@ class PostScreen extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
-
+    // this function does a post request to post a chit to the api and uses an if statement to see if their is an image to post with the chitt.
     postChit(token, id){
         if(global.photoData == "null" || global.photoData == "undefined")
         {
@@ -85,6 +86,7 @@ class PostScreen extends Component{
 
     }
 
+    // this function does a post request to send the photo to the api
     updatePhoto(){
         return fetch("http://10.0.2.2:3333/api/v0.0.5/chits/"+ this.state.chit_id +"/photo",
         {
@@ -142,7 +144,7 @@ class PostScreen extends Component{
 
 export default PostScreen;
 
-
+// All the styling for the post screen page is done here.
 const styles = StyleSheet.create({
 
     container: {

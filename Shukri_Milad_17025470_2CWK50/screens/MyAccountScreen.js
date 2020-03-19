@@ -15,10 +15,12 @@ class MyAccount extends Component{
         token = state.params.token;
     }
 
+    // removes the header at the top of the application
     static navigationOptions = {
         header: null
     }
 
+    // grabs your user information using a get request
     getInfo(){
             return fetch('http://10.0.2.2:3333/api/v0.0.5/user/' + id)
             .then((response) => response.json())
@@ -36,11 +38,12 @@ class MyAccount extends Component{
     }
 
 
-
+    // this function navigates to the camera screen and sends the id and token
     updateCameraFunc(id, token){
             this.props.navigation.navigate('CameraScreen', {id, token})
     }
 
+    // this function navigates to the information screen and sends the id and token
     updateInfoFunc(id, token){
             this.props.navigation.navigate('InformationScreen', {id, token})
     }
@@ -50,14 +53,12 @@ class MyAccount extends Component{
              console.log(id, token);
     }
 
-//    componentDidUpdate(){
-//             this.getInfo();
-//    }
-
+    // this function navigates to the following screen and sends the id
     followingFunc(id){
             this.props.navigation.navigate('FollowingScreen', {id})
     }
 
+    // this function navigates to the followers screen and sends the id
     followersFunc(id){
             this.props.navigation.navigate('FollowersScreen', {id})
     }
@@ -111,6 +112,8 @@ class MyAccount extends Component{
 }
 
 export default MyAccount;
+
+// All the styling for the my account screen is done here.
 
 const styles = StyleSheet.create({
 
